@@ -219,20 +219,31 @@ struct ContentView: View {
     @State var dividerWidth: CGFloat = 100
     
     var body: some View {
-        VStack {
+        ScrollView(.vertical, showsIndicators: false) {
             HStack {
-                Rectangle()
-                    .fill(Color.white)
-                    .frame(width: dividerWidth)
-                CollectionView(data: strings, layout: flowLayout(alignment: .justify), onReorder: { old, new in
-                    self.strings.move(fromOffsets: IndexSet(integer: old), toOffset: new)
-                }) {
-                    Text($0).foregroundColor(.white)
-                        .padding(10)
-                        .background(RoundedRectangle(cornerRadius: 5).fill(Color.blue))
-                }.padding(20)
+                Text("Lorem")
+                Spacer()
+                Text("Ipsum")
             }
-            Slider(value: $dividerWidth, in: 0...500)
+                .padding()
+                .background(Color.green)
+            
+            CollectionView(data: strings, layout: flowLayout(alignment: .justify), onReorder: { old, new in
+                self.strings.move(fromOffsets: IndexSet(integer: old), toOffset: new)
+            }) {
+                Text($0).foregroundColor(.white)
+                    .padding(10)
+                    .background(RoundedRectangle(cornerRadius: 5).fill(Color.blue))
+            }.padding(20)
+            
+            HStack {
+                Text("Lorem")
+                Spacer()
+                Text("Ipsum")
+            }
+                .padding()
+                .background(Color.green)
+            
         }
     }
 }
